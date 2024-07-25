@@ -1,0 +1,21 @@
+# The first talks the about the apiVersion of the API server of kubernetes
+apiVersion: v1
+
+# Next is the type of object in this case it is Service
+kind: Service
+
+# Next is the meta-data about the service which is then used to identify and run the service
+metadata:
+  name: go-web-app
+  labels:
+    app: go-web-app
+
+# Next is the specification of the service.yaml and in this the most important point is the that selector app should match the label value in deployment.yaml pod spec!! and rest is the targetPort and type of service we can use in this case we are using clusterIP!!
+spec:
+  selector:
+    app: go-web-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP 
